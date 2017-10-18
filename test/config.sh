@@ -2,11 +2,11 @@
 set -e
 
 testAlias+=(
-	[bitcoind:trusty]='bitcoind'
+	[syscoind:trusty]='syscoind'
 )
 
 imageTests+=(
-	[bitcoind]='
+	[syscoind]='
 		rpcpassword
 	'
 )

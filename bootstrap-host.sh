@@ -4,7 +4,7 @@
 #
 set -ex
 
-BTC_IMAGE=${BTC_IMAGE:-kylemanna/bitcoind}
+SYS_IMAGE=${SYS_IMAGE:-kylemanna/syscoind}
 
 distro=$1
 shift
@@ -35,23 +35,23 @@ if [ "$distro" = "trusty" -o "$distro" = "ubuntu:14.04" ]; then
 fi
 
 # Always clean-up, but fail successfully
-docker kill bitcoind-node 2>/dev/null || true
-docker rm bitcoind-node 2>/dev/null || true
-stop docker-bitcoind 2>/dev/null || true
+docker kill syscoind-node 2>/dev/null || true
+docker rm syscoind-node 2>/dev/null || true
+stop docker-syscoind 2>/dev/null || true
 
 # Always pull remote images to avoid caching issues
-if [ -z "${BTC_IMAGE##*/*}" ]; then
-    docker pull $BTC_IMAGE
+if [ -z "${SYS_IMAGE##*/*}" ]; then
+    docker pull $SYS_IMAGE
 fi
 
 # Initialize the data container
-docker volume create --name=bitcoind-data
-docker run -v bitcoind-data:/bitcoin --rm $BTC_IMAGE btc_init
+docker volume create --name=syscoind-data
+docker run -v syscoind-data:/syscoin --rm $SYS_IMAGE btc_init
 
-# Start bitcoind via upstart and docker
-curl https://raw.githubusercontent.com/kylemanna/docker-bitcoind/master/upstart.init > /etc/init/docker-bitcoind.conf
-start docker-bitcoind
+# Start syscoind via upstart and docker
+curl https://raw.githubusercontent.com/kylemanna/docker-syscoind/master/upstart.init > /etc/init/docker-syscoind.conf
+start docker-syscoind
 
 set +ex
-echo "Resulting bitcoin.conf:"
-docker run -v bitcoind-data:/bitcoin --rm $BTC_IMAGE cat /bitcoin/.bitcoin/bitcoin.conf
+echo "Resulting syscoin.conf:"
+docker run -v syscoind-data:/syscoin --rm $SYS_IMAGE cat /syscoin/.syscoin/syscoin.conf

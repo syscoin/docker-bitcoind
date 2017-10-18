@@ -2,7 +2,7 @@
 
 set -ex
 
-# Generate bitcoin.conf
+# Generate syscoin.conf
 btc_init
 
 if [ $# -gt 0 ]; then
@@ -11,4 +11,4 @@ else
     args=("-rpcallowip=::/0")
 fi
 
-exec bitcoind "${args[@]}"
+exec syscoind "${args[@]}"
