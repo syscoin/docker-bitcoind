@@ -3,7 +3,7 @@ Syscoind for Docker
 
 [![Docker Stars](https://img.shields.io/docker/stars/willyko/docker-syscoind.svg)](https://hub.docker.com/r/willyko/docker-syscoind/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/willyko/docker-syscoind.svg)](https://hub.docker.com/r/willyko/docker-syscoind/)
-[![Build Status](https://travis-ci.org/willyk/docker-syscoind.svg?branch=master)](https://travis-ci.org/willyk/docker-syscoind/)
+[![Build Status](https://travis-ci.org/syscoin/docker-syscoind.svg?branch=master)](https://travis-ci.org/syscoin/docker-syscoind/)
 [![ImageLayers](https://images.microbadger.com/badges/image/willyk/syscoind.svg)](https://microbadger.com/#/images/willyk/syscoind)
 
 Docker image that runs the Syscoin syscoind node in a container for easy deployment.
