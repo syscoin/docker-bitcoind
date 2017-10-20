@@ -2,13 +2,13 @@
 set -e
 
 # Generate the password the first time
-btc_init 2>/dev/null
+sys_init 2>/dev/null
 eval `grep rpcpassword $HOME/.syscoin/syscoin.conf`
 rpcpassword1=$rpcpassword
 
 # Generate the password again
 rm ~/.syscoin/syscoin.conf
-btc_init 2>/dev/null
+sys_init 2>/dev/null
 eval `grep rpcpassword $HOME/.syscoin/syscoin.conf`
 rpcpassword2=$rpcpassword
 
