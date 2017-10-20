@@ -14,7 +14,7 @@ ENV GROUP_ID ${GROUP_ID:-1000}
 RUN groupadd -g ${GROUP_ID} syscoin \
 	&& useradd -u ${USER_ID} -g syscoin -s /bin/bash -m -d /syscoin syscoin
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FF4B648FDB0BC502A06FD2CE9AC14A65A6FE6881 && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6C2343CF3DDDFC8DBAA94C02FCA4C13E83E54555 && \
     echo "deb http://ppa.launchpad.net/willyk/syscoin/ubuntu xenial main" > /etc/apt/sources.list.d/syscoin.list
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
