@@ -14,12 +14,24 @@ ENV GROUP_ID ${GROUP_ID:-1000}
 RUN groupadd -g ${GROUP_ID} syscoin \
 	&& useradd -u ${USER_ID} -g syscoin -s /bin/bash -m -d /syscoin syscoin
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6C2343CF3DDDFC8DBAA94C02FCA4C13E83E54555 && \
-    echo "deb http://ppa.launchpad.net/willyk/syscoin/ubuntu xenial main" > /etc/apt/sources.list.d/syscoin.list
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-		syscoind \
+ENV SYSCOIN_VERSION 4.1.2.1
+RUN set -x \ 
+        && apt-get update \
+        && apt-get install -y wget ca-certificates \
+        && wget "https://github.com/syscoin/syscoin/releases/download/v$SYSCOIN_VERSION/syscoin-$SYSCOIN_VERSION-x86_64-linux-gnu.tar.gz"  \
+        && wget "https://github.com/syscoin/syscoin/releases/download/v$SYSCOIN_VERSION/SHA256SUMS.asc" \
+        && export GNUPGHOME="$(mktemp -d)" \
+	&& gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 79D00BAC68B56D422F945A8F8E3A8F3247DBCBBF \
+	&& gpg --verify SHA256SUMS.asc \
+        && sha256sum --ignore-missing --check SHA256SUMS.asc \
+        && tar xf syscoin-$SYSCOIN_VERSION-x86_64-linux-gnu.tar.gz \
+        && install -m 0755 -o root -g root -t /usr/local/bin syscoin-$SYSCOIN_VERSION/bin/* \
+        && rm -r "$GNUPGHOME" "syscoin-$SYSCOIN_VERSION" "syscoin-$SYSCOIN_VERSION-x86_64-linux-gnu.tar.gz" \
+	&& apt-get purge -y \
+		ca-certificates \
+		wget \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -44,7 +56,7 @@ ADD ./bin /usr/local/bin
 
 VOLUME ["/syscoin"]
 
-EXPOSE 8332 8333 18332 18333
+EXPOSE 8369 8370 18369 18370 30303
 
 WORKDIR /syscoin
 
