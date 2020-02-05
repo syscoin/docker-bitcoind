@@ -8,8 +8,8 @@ pre-start script
   docker rm -f syscoind-node || true
   
   # Attempt to always update and fail silently if the network isn't ready
-  docker pull willyko/syscoind || true
+  docker pull blockchainfoundryinc/docker-syscoind || true
 end script
 script
-  exec docker run --rm -v syscoind-data:/syscoin --name=syscoind-node --rm -p 8333:8333 -p 127.0.0.1:8332:8332 willyko/syscoind
+  exec docker run --rm -v syscoind-data:/syscoin --name=syscoind-node --rm -p 8333:8333 -p 127.0.0.1:8332:8332 blockchainfoundryinc/docker-syscoind
 end script

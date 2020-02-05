@@ -4,7 +4,7 @@
 #
 set -ex
 
-SYS_IMAGE=${SYS_IMAGE:-kylemanna/syscoind}
+SYS_IMAGE=${SYS_IMAGE:-blockchainfoundryinc/docker-syscoind}
 
 distro=$1
 shift
@@ -46,10 +46,10 @@ fi
 
 # Initialize the data container
 docker volume create --name=syscoind-data
-docker run -v syscoind-data:/syscoin --rm $SYS_IMAGE btc_init
+docker run -v syscoind-data:/syscoin --rm $SYS_IMAGE sys_init
 
 # Start syscoind via upstart and docker
-curl https://raw.githubusercontent.com/kylemanna/docker-syscoind/master/upstart.init > /etc/init/docker-syscoind.conf
+curl https://raw.githubusercontent.com/blockchainfoundryinc/docker-syscoind/master/upstart.init > /etc/init/docker-syscoind.conf
 start docker-syscoind
 
 set +ex
