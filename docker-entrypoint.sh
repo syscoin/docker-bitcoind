@@ -8,7 +8,7 @@ if [ "${1#-}" != "$1" ] || [ "${1%.conf}" != "$1" ]; then
 fi
 
 # allow the container to be started with `--user`
-if [ "$1" = 'btc_oneshot' -a "$(id -u)" = '0' ]; then
+if [ "$1" = 'sys_oneshot' -a "$(id -u)" = '0' ]; then
 	chown -R syscoin .
 	exec gosu syscoin "$0" "$@"
 fi

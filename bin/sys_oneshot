@@ -3,7 +3,7 @@
 set -ex
 
 # Generate syscoin.conf
-btc_init
+sys_init
 
 if [ $# -gt 0 ]; then
     args=("$@")
