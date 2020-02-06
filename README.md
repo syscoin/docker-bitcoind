@@ -32,15 +32,15 @@ Quick Start
 
         docker volume create --name=syscoind-data
         docker run -v syscoind-data:/syscoin --name=syscoind-node -d \
-            -p 8333:8333 \
-            -p 127.0.0.1:8332:8332 \
-            willyko/syscoind
+            -p 8369:8369 \
+            -p 127.0.0.1:8370:8370 \
+            blockchainfoundryinc/docker-syscoind
 
 2. Verify that the container is running and syscoind node is downloading the blockchain
 
         $ docker ps
         CONTAINER ID        IMAGE                         COMMAND             CREATED             STATUS              PORTS                                              NAMES
-        d0e1076b2dca        willyko/syscoind:latest     "sys_oneshot"       2 seconds ago       Up 1 seconds        127.0.0.1:8332->8332/tcp, 0.0.0.0:8333->8333/tcp   syscoind-node
+        d0e1076b2dca        blockchainfoundryinc/docker-syscoind:4.1.2.1     "sys_oneshot"       2 seconds ago       Up 1 seconds        127.0.0.1:8369->8369/tcp, 0.0.0.0:8370->8370/tcp   syscoind-node
 
 3. You can then access the daemon's output thanks to the [docker logs command]( https://docs.docker.com/reference/commandline/cli/#logs)
 

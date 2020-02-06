@@ -14,7 +14,7 @@
 
 *Note:* This container will be run in the same way as the syscoind node, but will not connect to already running containers or processes.
 
-    docker run -v syscoind-data:/syscoin --rm -it willyko/syscoind bash -l
+    docker run -v syscoind-data:/syscoin --rm -it blockchainfoundryinc/docker-syscoind bash -l
 
 You can also attach bash into running container to debug running syscoind
 
