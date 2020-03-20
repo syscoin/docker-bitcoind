@@ -11,7 +11,7 @@ if [ ! -e "$HOME/.syscoin/syscoin.conf" ]; then
 
     # Seed a random password for JSON RPC server
     cat <<EOF > $HOME/.syscoin/syscoin.conf
-disablewallet=${DISABLEWALLET:-1}
+disablewallet=${DISABLEWALLET:-0}
 printtoconsole=${PRINTTOCONSOLE:-1}
 rpcuser=${RPCUSER:-syscoinrpc}
 rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}

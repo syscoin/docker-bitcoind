@@ -14,7 +14,7 @@ ENV GROUP_ID ${GROUP_ID:-1000}
 RUN groupadd -g ${GROUP_ID} syscoin \
 	&& useradd -u ${USER_ID} -g syscoin -s /bin/bash -m -d /syscoin syscoin
 
-ENV SYSCOIN_VERSION 4.1.2.1
+ENV SYSCOIN_VERSION 4.1.3
 RUN set -x \ 
         && apt-get update \
         && apt-get install -y wget ca-certificates \
