@@ -15,8 +15,6 @@ disablewallet=${DISABLEWALLET:-0}
 printtoconsole=${PRINTTOCONSOLE:-1}
 rpcuser=${RPCUSER:-syscoinrpc}
 rpcpassword=${RPCPASSWORD:-`dd if=/dev/urandom bs=33 count=1 2>/dev/null | base64`}
-server=1
-rpcbind=${RPCBIND:-0.0.0.0}
 EOF
 
 fi

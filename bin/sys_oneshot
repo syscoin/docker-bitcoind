@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -ex
 
@@ -6,9 +6,9 @@ set -ex
 sys_init
 
 if [ $# -gt 0 ]; then
-    args=("$@")
-else
-    args=("-rpcallowip=::/0")
+    # If IPv6 is in the container do both:
+    #set -- '-rpcbind=[::]:8370' '-rpcallowip=::/0' '-rpcallowip=0.0.0.0/0'
+    set -- '-rpcbind=:8332' '-rpcallowip=0.0.0.0/0'
 fi
 
-exec syscoind "${args[@]}"
+exec syscoind "$@"
